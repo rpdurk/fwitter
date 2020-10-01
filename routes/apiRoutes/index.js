@@ -1,9 +1,7 @@
 const router = require('express').Router();
+const userRoutes = require('./userRoutes');
 
 // api prepended to every route
-//underscore in front of req shows that this is not being used.
-router.get('/', (_req, res) => {
-    res.send('Hello');
-});
+router.use('/users', userRoutes);
 
 module.exports = router;
