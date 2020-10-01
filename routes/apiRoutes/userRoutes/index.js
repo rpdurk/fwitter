@@ -1,20 +1,22 @@
-const router = require('express').Router();
+const router = require('express')
+    .Router();
 const connection = require('../../../config/connection');
+const { insertUser } = require('../../../model/userQueries');
+const { fetchUsers } = require('../../../model/userOrm');
 
 // /api/users prepended to every Route
 router.route('/')
-    .get( async (_req, res) => {
-    const query = 'SELECT * FROM users;';
-    //getting an array back when making this query, not an object
-    const [ rows, fields, ] = await connection.query(query);
-    console.log('I AM ROWS', rows);
-        console.log('I AM FIELDS', fields);
-        res.json(rows);
+    .get(async (_req, res) => {
+        try {
+            const users = await fetchUsers();
+            res.json(users);
+        } catch (e) {
+            res.status(400).json(e);
+        }
     })
     .post(async (req, res) => {
         const userInput = req.body;
-        const query = 'INSERT INTO users SET ?;';
-        const result = await connection.query(query, userInput);
+        const result = await connection.query(insertUser, userInput);
         res.json(result);
     });
 
