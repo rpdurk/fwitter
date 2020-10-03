@@ -1,7 +1,7 @@
-const findALlUsers = 'SELECT * FROM users;';
-const insertUser = 'INSERT INTO users SET ?;';
+const findAllUsers = 'SELECT * FROM users;';
+const insertUserQuery = 'INSERT INTO users (username) VALUES (?);';
 
 module.exports = {
     findAllUsers,
-    insertUser,
+    insertUserQuery,
 };
