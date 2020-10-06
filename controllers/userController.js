@@ -6,7 +6,8 @@ module.exports = {
             const users = await fetchUsers();
             res.json(users);
         } catch (e) {
-            res.status(400).json(e);
+            res.status(400)
+                .json(e);
         }
     },
     insertUserApi: async (req, res) => {
@@ -16,7 +17,8 @@ module.exports = {
             console.log('I AM THE RESULT');
             res.json(result);
         } catch (e) {
-            res.status(400).json(e);
+            res.status(400)
+                .json(e);
         }
     },
 };
